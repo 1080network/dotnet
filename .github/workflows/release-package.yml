@@ -12,7 +12,7 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
-      - run: dotnet pack --configuration Release -p:PackageVersion=0.0.1
+      - run: dotnet pack --configuration Release -p:PackageVersion=$VERSION
         #working-directory: src
         env:
           VERSION: ${{ github.event.release.tag_name }}
