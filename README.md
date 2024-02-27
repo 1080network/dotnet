@@ -1,6 +1,6 @@
 Example ping request
 
-### Javascript
+### C#
 
 ```c#
         var trustCertPath = "<certpath>/quickstart-lj5bgu/you_to_network/mica_trust.pem";
