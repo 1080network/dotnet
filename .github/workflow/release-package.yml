@@ -1,0 +1,22 @@
+name: 1080network dotnet NuGet release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish-gpr:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - run: dotnet pack --configuration Release
+        working-directory: partner
+      - run: dotnet nuget push "bin/Release/1080NetworkDotnet.$VERSION.nupkg"  --api-key $NUGET_AUTH_TOKEN --source "github"
+        working-directory: partner
+        env:
+          NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ github.event.release.tag_name }}
