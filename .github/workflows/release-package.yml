@@ -13,9 +13,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: dotnet pack --configuration Release
-        working-directory: partner
+        #working-directory: src
       - run: dotnet nuget push "bin/Release/1080NetworkDotnet.$VERSION.nupkg"  --api-key $NUGET_AUTH_TOKEN --source "github"
-        working-directory: partner
+        #working-directory: src
         env:
           NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VERSION: ${{ github.event.release.tag_name }}
