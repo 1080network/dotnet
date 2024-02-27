@@ -18,7 +18,7 @@ jobs:
         #working-directory: src
         env:
           NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: dotnet nuget push "bin/Release/1080NetworkDotnet.$VERSION.nupkg"  --api-key $NUGET_AUTH_TOKEN --source "github"
+      - run: dotnet nuget push "src/RealTimePayments/bin/Release/1080NetworkDotnet.$VERSION.nupkg"  --api-key $NUGET_AUTH_TOKEN --source "github"
         #working-directory: src
         env:
           NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
