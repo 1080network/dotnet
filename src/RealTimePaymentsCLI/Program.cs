@@ -1,17 +1,17 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 using Grpc.Net.Client;
-using Mica.Partner.Partner.V1;
 using Mica.Partner.Service.V1;
 using Micashared.Common.Ping.V1;
-using System.Net.Security;
-using System.Security.Cryptography.X509Certificates;
+
+namespace RealTimePaymentsCLI;
 
 internal abstract class RealTimePaymentsCli
 {
 
     public static int Main(string[] args)
     {
-         if (args.Length < 5) {
+        if (args.Length < 5) {
             Console.WriteLine("Usage: ./executable [rooca.pem] [intermediate.pem] [client.pfx] [pfx password] <addr>.");
             return 1;
         }
@@ -27,7 +27,6 @@ internal abstract class RealTimePaymentsCli
         // A pfx file is just a file that contains a cert and a key protected by a password, useful for Windows. 
         // openssl pkcs12 -export -out externalclient.pfx -inkey externalclient.key -in externalclient.crt
         var clientCert = new X509Certificate2(args[2], args[3]);
-        //clientCert = new X509Certificate2(clientCert.Export(X509ContentType.Pfx));
  
         var trust = SslCertificateTrust.CreateForX509Collection(new X509Certificate2Collection() { rootCert }, false);
         handler.SslOptions.ClientCertificateContext = SslStreamCertificateContext.Create(clientCert, new X509Certificate2Collection() { intermediateCert }, false, trust);
