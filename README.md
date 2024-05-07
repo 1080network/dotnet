@@ -21,6 +21,6 @@ src/RealTimePaymentsCLI/bin/Debug/net8.0/RealTimePaymentsCLI /tmp/hron3n/rootca.
 
 ```
 
-## Limitation
+## Limitations
 
 The dotnet client does not currently support MacOS due to known issues with the dotnet integration with the keystore.
