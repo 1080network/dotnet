@@ -17,14 +17,6 @@
       </PackageReference>
     </ItemGroup>
     
-    <!--<Target Name="PreBuild" BeforeTargets="CoreCompile">
-        <Exec Command="$(SolutionDir)src/generate.sh $(SolutionDir)" />
-    </Target>
-        <Protobuf Include="$(SolutionDir)proto/mica/partner/**/*.proto" />
-        <Protobuf Include="$(SolutionDir)proto/micashared/**/*.proto" />
-        <Protobuf Include="$(SolutionDir)proto/validate/**/*.proto" />
-        -->
-
     <ItemGroup>
         <Protobuf Include="$(SolutionDir)proto/**/*.proto" GrpcServices="Both" ProtoRoot="$(SolutionDir)proto/" />
     </ItemGroup>
