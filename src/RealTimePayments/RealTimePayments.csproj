@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Google.Api.CommonProtos" Version="2.14.0" />
+     
       <PackageReference Include="Google.Protobuf" Version="3.25.2" />
       <PackageReference Include="Grpc.AspNetCore" Version="2.60.0" />
       <PackageReference Include="Grpc.Net.Client" Version="2.60.0" />
@@ -17,14 +17,6 @@
       </PackageReference>
     </ItemGroup>
     
-    <!--<Target Name="PreBuild" BeforeTargets="CoreCompile">
-        <Exec Command="$(SolutionDir)src/generate.sh $(SolutionDir)" />
-    </Target>
-        <Protobuf Include="$(SolutionDir)proto/mica/partner/**/*.proto" />
-        <Protobuf Include="$(SolutionDir)proto/micashared/**/*.proto" />
-        <Protobuf Include="$(SolutionDir)proto/validate/**/*.proto" />
-        -->
-
     <ItemGroup>
         <Protobuf Include="$(SolutionDir)proto/**/*.proto" GrpcServices="Both" ProtoRoot="$(SolutionDir)proto/" />
     </ItemGroup>
