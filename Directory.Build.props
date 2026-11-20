@@ -1,0 +1,26 @@
+<Project>
+  <!-- Shared by every project. scripts/update-from-proto.sh sets Version from the proto release tag. -->
+  <PropertyGroup>
+    <Version>2.0.0-pre0</Version>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <Authors>Mica</Authors>
+    <Company>Mica</Company>
+    <PackageProjectUrl>https://mica.io/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/1080network/dotnet</RepositoryUrl>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(IsPackable)' != 'false'">
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(IsPackable)' != 'false'">
+    <None Include="$(MSBuildThisFileDirectory)README.md" Pack="true" PackagePath="\" Visible="false" />
+  </ItemGroup>
+
+  <!-- Generated code has no XML docs and uses lower-case type names in places -->
+  <PropertyGroup>
+    <NoWarn>$(NoWarn);CS1591;CS8981</NoWarn>
+  </PropertyGroup>
+</Project>

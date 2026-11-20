@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "RealTimePaymentsCLI": {
-      "commandName": "Project",
-      "commandLineArgs": "c:/proj/certs/rootca.crt c:/proj/certs/intermediate.crt c:/proj/certs/externalclient.pfx test https://api.hron3n.members.mica.io:443"
-    }
-  }
-}
