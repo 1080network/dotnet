@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <PackageId>Mica.Common</PackageId>
+    <Description>Shared messages and the mutual TLS channel helper for the Mica network SDK</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.36.2" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.85.0" />
+    <PackageReference Include="Grpc.Core.Api" Version="2.85.0" />
+  </ItemGroup>
+</Project>

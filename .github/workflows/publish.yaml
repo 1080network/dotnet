@@ -1,0 +1,33 @@
+name: Publish packages
+
+# Packs and publishes Mica.Common, Mica.Issuer and Mica.Acceptor to GitHub Packages when a release is published.
+# The release tag is the version, for example v2.0.0-pre0.
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Check the release tag matches the project version
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          PROJECT_VERSION=$(sed -n 's|.*<Version>\(.*\)</Version>.*|\1|p' Directory.Build.props)
+          if [ "$VERSION" != "$PROJECT_VERSION" ]; then
+            echo "Release tag $GITHUB_REF_NAME does not match the version in Directory.Build.props ($PROJECT_VERSION)" >&2
+            exit 1
+          fi
+      - run: dotnet test -c Release
+      - run: dotnet pack -c Release --no-build -o artifacts
+      - name: Push to GitHub Packages
+        run: |
+          dotnet nuget push "artifacts/*.nupkg" --api-key "${{ secrets.GITHUB_TOKEN }}" \
+            --source "https://nuget.pkg.github.com/1080network/index.json" --skip-duplicate

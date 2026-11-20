@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <PackageId>Mica.Acceptor</PackageId>
+    <Description>Mica network SDK for acceptors</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Mica.Common\Mica.Common.csproj" />
+  </ItemGroup>
+</Project>
