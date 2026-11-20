@@ -25,7 +25,10 @@ jobs:
             echo "Release tag $GITHUB_REF_NAME does not match the version in Directory.Build.props ($PROJECT_VERSION)" >&2
             exit 1
           fi
-      - run: dotnet test -c Release
+      # Build everything first: `dotnet test` only builds the test project and what it references,
+      # and pack --no-build needs every package project built.
+      - run: dotnet build -c Release
+      - run: dotnet test -c Release --no-build
       - run: dotnet pack -c Release --no-build -o artifacts
       - name: Push to GitHub Packages
         run: |
